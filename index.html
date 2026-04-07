@@ -1493,17 +1493,18 @@ function writeMembers(e) {
       /* ══════════════════════════════
    K. 팀 생성 알고리즘
    ──────────────────────────────
-   핵심: 인원 범위(min~max)가 최우선
+   우선순위 1: 팀당 인원 min~max 준수
+   우선순위 2: 그룹 비율 균등 배분
    ──────────────────────────────
-   1. calcTeamCount로 범위를 만족하는 팀 수 결정
-   2. 그룹별 버킷으로 분류 & 내부 셔플
-   3. 라운드로빈으로 각 팀에 균등 배분
-      → 그룹 비율 유지
-   4. 남은 인원 분배:
-      floor(n/t)명씩 배정 후 나머지는
-      팀 인덱스 순으로 1명씩 추가
-      → 결과: 모든 팀이 floor(n/t) 또는 ceil(n/t)명
-      → max를 넘지 않도록 보장
+   단계:
+   1. min~max로 팀 수 자동 계산
+   2. 각 팀의 목표 인원 확정
+      → 기본 floor(n/t)명, 나머지는 팀마다 1명씩 추가
+      → 모든 팀이 정확히 floor 또는 ceil명
+   3. 그룹별 버킷 분류 & 셔플
+   4. 목표 인원 슬롯을 채우되 그룹 비율 유지
+      → 각 팀 슬롯을 채울 때 남은 그룹 중
+         비율이 가장 높은 그룹에서 우선 배정
    5. 팀 내부 셔플
 ══════════════════════════════ */
       function generateTeams() {
@@ -1516,11 +1517,24 @@ function writeMembers(e) {
         if (att.length < 2)
           return showToast('❗ 참석자가 2명 이상이어야 합니다');
 
-        // 1. 인원 범위 기준으로 팀 수 결정
+        // 1. 인원 범위 기준 팀 수 결정
         const tCnt = calcTeamCount(att.length, minS, maxS);
         if (tCnt < 1) return showToast('❗ 팀을 구성할 수 없습니다');
 
-        // 2. 그룹별 버킷 분류 & 셔플
+        const n = att.length;
+        const base = Math.floor(n / tCnt); // 기본 인원
+        const extra = n % tCnt; // 1명 더 받는 팀 수
+
+        // 2. 각 팀의 목표 인원 확정 (base 또는 base+1)
+        //    → extra개 팀은 base+1명, 나머지는 base명
+        //    → 셔플해서 어떤 팀이 +1인지 랜덤 결정
+        const targetSizes = Array.from(
+          { length: tCnt },
+          (_, i) => base + (i < extra ? 1 : 0),
+        );
+        shuffle(targetSizes); // 어떤 팀이 크고 작은지 랜덤화
+
+        // 3. 그룹별 버킷 분류 & 셔플
         const buckets = {};
         GROUPS.forEach((g) => {
           buckets[g] = [];
@@ -1531,25 +1545,34 @@ function writeMembers(e) {
           buckets[key].push({ ...m });
         });
         Object.values(buckets).forEach((a) => shuffle(a));
-        const groups = Object.values(buckets).filter((a) => a.length > 0);
 
-        // 3. 팀 초기화
+        // 4. 팀별로 목표 인원만큼 배정
+        //    각 슬롯을 채울 때 남은 인원 중 비율이 가장 높은 그룹 우선 배정
+        //    → 그룹 비율이 자연스럽게 균등하게 분산됨
         const teams = Array.from({ length: tCnt }, (_, i) => ({
           id: i + 1,
           color: TEAM_COLORS[i % TEAM_COLORS.length],
           members: [],
         }));
 
-        // 4. 라운드로빈으로 그룹 비율 유지하며 배분
-        //    → 각 그룹 멤버를 팀 0,1,2...순으로 배정
-        groups.forEach((grp) => {
-          grp.forEach((m, i) => teams[i % tCnt].members.push(m));
+        teams.forEach((team, ti) => {
+          const target = targetSizes[ti];
+          for (let slot = 0; slot < target; slot++) {
+            // 남은 인원이 가장 많은 그룹에서 배정 (비율 균등 유지)
+            const groupKeys = Object.keys(buckets).filter(
+              (k) => buckets[k].length > 0,
+            );
+            if (!groupKeys.length) break;
+            // 가장 인원이 많이 남은 그룹 선택 (동률이면 섞인 순서)
+            groupKeys.sort((a, b) => buckets[b].length - buckets[a].length);
+            const chosen = groupKeys[0];
+            team.members.push(buckets[chosen].pop());
+          }
         });
 
-        // 5. 팀 내부 셔플
+        // 5. 팀 내부 셔플 (그룹 순서 안 보이게)
         teams.forEach((t) => shuffle(t.members));
 
-        // 팀당 인원 분포 확인
         const sizes = teams.map((t) => t.members.length);
         const realMin = Math.min(...sizes),
           realMax = Math.max(...sizes);
