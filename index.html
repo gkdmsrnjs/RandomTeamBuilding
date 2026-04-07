@@ -50,8 +50,6 @@
         flex-direction: column;
         gap: 16px;
       }
-
-      /* 헤더 */
       .header {
         text-align: center;
         padding: 16px 0 2px;
@@ -66,7 +64,6 @@
         margin-top: 4px;
         font-size: 0.84rem;
       }
-
       /* 연결 바 */
       .conn-bar {
         display: flex;
@@ -120,10 +117,7 @@
         margin-left: auto;
         display: flex;
         gap: 8px;
-        align-items: center;
       }
-
-      /* 카드 */
       .card {
         background: var(--surface);
         border: 1px solid var(--border);
@@ -142,7 +136,7 @@
         cursor: pointer;
         user-select: none;
       }
-      .card-header.no-toggle {
+      .card-header.static {
         cursor: default;
       }
       .card-title {
@@ -166,11 +160,6 @@
         transition: transform 0.25s;
         margin-left: 4px;
       }
-      .collapsed .collapse-icon {
-        transform: rotate(-90deg);
-      }
-
-      /* 버튼 */
       button {
         cursor: pointer;
         border: none;
@@ -229,8 +218,6 @@
         cursor: not-allowed;
         transform: none !important;
       }
-
-      /* 입력 */
       input[type='text'],
       input[type='number'],
       select {
@@ -250,8 +237,6 @@
         border-color: var(--accent);
         background: #fff;
       }
-
-      /* 추가 폼 */
       .add-form {
         display: grid;
         grid-template-columns: 1fr 110px auto;
@@ -271,8 +256,6 @@
           grid-template-columns: 1fr 1fr;
         }
       }
-
-      /* 툴바 */
       .list-toolbar {
         display: flex;
         gap: 6px;
@@ -297,8 +280,7 @@
         color: #fff;
         border-color: var(--accent);
       }
-
-      /* 명단 — 그룹별 섹션 */
+      /* 그룹 섹션 */
       .group-section {
         padding: 0 16px;
       }
@@ -308,12 +290,9 @@
         gap: 8px;
         padding: 9px 0 5px;
         border-bottom: 2px solid var(--border);
-        margin-top: 4px;
+        margin-top: 6px;
       }
-      .group-section-header:first-child {
-        margin-top: 0;
-      }
-      .group-label {
+      .group-label-pill {
         font-size: 0.72rem;
         font-weight: 700;
         padding: 2px 9px;
@@ -323,11 +302,10 @@
         font-size: 0.7rem;
         color: var(--muted);
       }
-
-      /* 멤버 행 — 일반 모드: 이름 | 그룹 | 참석 */
+      /* 일반 행: 이름 | 참석 */
       .member-row {
         display: grid;
-        grid-template-columns: 1fr 90px 78px;
+        grid-template-columns: 1fr 78px;
         align-items: center;
         gap: 8px;
         padding: 7px 0;
@@ -340,11 +318,7 @@
       .member-row.absent {
         opacity: 0.4;
       }
-      .member-name {
-        font-weight: 500;
-      }
-
-      /* 편집 모드 행: 이름입력 | 그룹선택 | 참석 | 저장/삭제 */
+      /* 편집 행: 이름 | 그룹 | 참석 | 삭제 */
       .member-row.edit-mode {
         grid-template-columns: 1fr 100px 70px auto;
       }
@@ -353,7 +327,6 @@
         padding: 4px 7px;
         font-size: 0.82rem;
       }
-
       .toggle-btn {
         padding: 3px 8px;
         border-radius: 20px;
@@ -370,34 +343,6 @@
         background: var(--danger-light);
         color: var(--danger);
       }
-      .edit-btns {
-        display: flex;
-        gap: 4px;
-      }
-
-      /* 그룹 뱃지 색상 */
-      .g-알돌 {
-        background: #e8d5f5;
-        color: #6c3483;
-      }
-      .g-신입생 {
-        background: #d6eaf8;
-        color: #1a5276;
-      }
-      .g-운동원 {
-        background: #d5f5e3;
-        color: #1e8449;
-      }
-
-      .group-badge {
-        font-size: 0.71rem;
-        font-weight: 700;
-        padding: 2px 8px;
-        border-radius: 20px;
-        text-align: center;
-        display: inline-block;
-      }
-
       .empty-state {
         text-align: center;
         padding: 28px 16px;
@@ -405,20 +350,11 @@
         font-size: 0.84rem;
         line-height: 2;
       }
-
-      /* 설정 패널 */
       .settings-body {
         padding: 14px 16px;
         display: flex;
         flex-direction: column;
         gap: 12px;
-      }
-      .setting-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        flex-wrap: wrap;
       }
       .setting-label {
         font-size: 0.85rem;
@@ -444,25 +380,32 @@
         font-weight: 700;
         color: var(--accent);
       }
-
-      /* 팀 설정 인풋 */
-      .team-config {
+      /* 인원 설정 */
+      .size-row {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 7px;
         flex-wrap: wrap;
       }
-      .team-config input {
-        width: 54px;
+      .size-row input {
+        width: 52px;
         text-align: center;
       }
-      .team-config span {
+      .size-row span {
         color: var(--muted);
         font-size: 0.8rem;
         white-space: nowrap;
       }
-
-      /* 그룹 현황 */
+      /* 팀 예측 칩 */
+      .team-preview {
+        background: var(--accent-light);
+        color: var(--accent);
+        border-radius: 8px;
+        padding: 7px 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-align: center;
+      }
       .group-stat-row {
         display: flex;
         align-items: center;
@@ -470,8 +413,7 @@
         padding: 3px 0;
         font-size: 0.79rem;
       }
-
-      /* 결과 — 크게 */
+      /* 결과 */
       .result-body {
         padding: 14px 16px;
       }
@@ -499,9 +441,8 @@
       }
       .team-card-header .cnt {
         font-size: 0.78rem;
-        opacity: 0.88;
-        background: rgba(255, 255, 255, 0.2);
-        padding: 2px 8px;
+        background: rgba(255, 255, 255, 0.22);
+        padding: 2px 9px;
         border-radius: 20px;
       }
       .team-card-body {
@@ -533,8 +474,6 @@
         font-size: 2.6rem;
         margin-bottom: 10px;
       }
-
-      /* 설정 접기 (작게) */
       .setup-mini {
         padding: 10px 16px;
         border-top: 1px solid var(--border);
@@ -552,10 +491,8 @@
         font-size: 0.76rem;
         padding: 4px 8px;
         flex: 1;
-        min-width: 200px;
+        min-width: 180px;
       }
-
-      /* 레이아웃 */
       .main-grid {
         display: grid;
         grid-template-columns: 1fr 300px;
@@ -567,14 +504,11 @@
           grid-template-columns: 1fr;
         }
       }
-
-      /* 우측 패널 */
       .right-col {
         display: flex;
         flex-direction: column;
         gap: 16px;
       }
-
       /* 모달 */
       .modal-overlay {
         display: none;
@@ -595,11 +529,11 @@
         box-shadow: var(--shadow-lg);
         width: 100%;
         max-width: 500px;
-        overflow: hidden;
         animation: mIn 0.2s ease;
         max-height: 88vh;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
       }
       @keyframes mIn {
         from {
@@ -637,16 +571,6 @@
         overflow-y: auto;
         flex: 1;
       }
-      .modal-footer {
-        padding: 11px 16px;
-        border-top: 1px solid var(--border);
-        display: flex;
-        gap: 8px;
-        justify-content: flex-end;
-        flex-shrink: 0;
-      }
-
-      /* Apps Script 코드 박스 */
       .code-block {
         background: #1a1a2e;
         color: #e2e8f0;
@@ -716,8 +640,6 @@
       .input-row input {
         flex: 1;
       }
-
-      /* toast & loading */
       .toast {
         position: fixed;
         bottom: 18px;
@@ -769,47 +691,40 @@
   </head>
   <body>
     <div class="app">
-      <!-- 헤더 -->
       <header class="header">
         <h1>🎯 팀 자동 배정</h1>
-        <p>Google Sheets 연동 · 버튼 하나로 명단 동기화</p>
+        <p>
+          상단 <b>🔄 불러오기</b> 버튼을 클릭해 Google Sheets에서 최신 명단을
+          가져오세요
+        </p>
       </header>
 
-      <!-- 연결 상태 바 -->
+      <!-- 연결 바 -->
       <div class="conn-bar">
         <span class="status-dot" id="status-dot"></span>
         <span class="conn-label" id="status-label">연결 중...</span>
         <span class="conn-sub" id="status-sub"></span>
         <div class="conn-actions">
-          <button class="btn-primary" id="sync-btn" onclick="syncFromSheets()">
+          <button class="btn-primary" onclick="syncFromSheets()">
             🔄 불러오기
           </button>
-          <button class="btn-ghost" id="push-btn" onclick="pushToSheets()">
-            📤 저장
-          </button>
+          <button class="btn-ghost" onclick="pushToSheets()">📤 저장</button>
         </div>
       </div>
 
-      <!-- 메인 그리드 -->
       <div class="main-grid">
         <!-- 좌: 명단 카드 -->
         <div>
-          <div class="card" id="member-card">
-            <!-- 카드 헤더 (클릭 시 접기) -->
-            <div class="card-header" onclick="toggleMemberList()">
+          <div class="card">
+            <div class="card-header" onclick="toggleList()">
               <div class="card-title">
-                📋 참가자 명단
-                <span class="badge" id="total-badge">0명</span>
+                📋 참가자 명단 <span class="badge" id="total-badge">0명</span>
               </div>
               <div
                 style="display: flex; align-items: center; gap: 7px"
                 onclick="event.stopPropagation()"
               >
-                <button
-                  class="btn-edit"
-                  id="edit-toggle-btn"
-                  onclick="toggleEditMode()"
-                >
+                <button class="btn-edit" id="edit-btn" onclick="toggleEdit()">
                   ✏️ 수정
                 </button>
                 <button class="btn-ghost" onclick="exportCSV()">CSV</button>
@@ -820,13 +735,12 @@
               </div>
             </div>
 
-            <!-- 접히는 본문 -->
             <div id="member-body">
               <!-- 추가 폼 -->
               <div class="add-form">
                 <div>
-                  <label>이름</label>
-                  <input
+                  <label>이름</label
+                  ><input
                     type="text"
                     id="inp-name"
                     placeholder="홍길동"
@@ -842,14 +756,13 @@
                   </select>
                 </div>
                 <div>
-                  <label>&nbsp;</label>
-                  <button class="btn-primary" onclick="addMember()">
+                  <label>&nbsp;</label
+                  ><button class="btn-primary" onclick="addMember()">
                     + 추가
                   </button>
                 </div>
               </div>
 
-              <!-- 검색/필터 -->
               <div class="list-toolbar">
                 <input
                   type="text"
@@ -881,17 +794,15 @@
                 </button>
               </div>
 
-              <!-- 그룹별 목록 -->
               <div id="member-list-body"></div>
             </div>
-            <!-- /member-body -->
 
-            <!-- 하단 소형 Sheets 설정 -->
+            <!-- 하단 소형 설정 -->
             <div class="setup-mini">
               <label>🔗 Sheets URL</label>
               <input
                 type="text"
-                id="mini-url-input"
+                id="mini-url"
                 placeholder="https://script.google.com/macros/s/…/exec"
               />
               <button
@@ -912,9 +823,9 @@
                   padding: 4px 9px;
                   white-space: nowrap;
                 "
-                onclick="openSetupModal()"
+                onclick="openSetup()"
               >
-                상세 설정
+                설정 안내
               </button>
             </div>
           </div>
@@ -924,11 +835,10 @@
         <div class="right-col">
           <!-- 설정 카드 -->
           <div class="card">
-            <div class="card-header no-toggle">
+            <div class="card-header static">
               <div class="card-title">⚙️ 팀 생성 설정</div>
             </div>
             <div class="settings-body">
-              <!-- 통계 -->
               <div class="stats-row">
                 <div class="stat-chip">
                   전체 <strong id="s-total">0</strong>명
@@ -941,39 +851,38 @@
                 </div>
               </div>
 
-              <!-- 팀 설정 -->
-              <div class="setting-row">
-                <div>
-                  <div class="setting-label">팀 구성</div>
-                  <div class="setting-desc">팀 수와 팀당 인원 범위</div>
+              <!-- 팀당 인원 범위 (우선) -->
+              <div>
+                <div class="setting-label">팀당 인원 수</div>
+                <div class="setting-desc" style="margin-bottom: 8px">
+                  입력한 범위를 먼저 맞추고 팀 수를 자동 결정합니다
                 </div>
-                <div class="team-config">
-                  <input
-                    type="number"
-                    id="team-count"
-                    value="5"
-                    min="1"
-                    max="30"
-                    title="팀 수"
-                  />
-                  <span>팀,</span>
+                <div class="size-row">
+                  <span>최소</span>
                   <input
                     type="number"
                     id="min-size"
                     value="4"
                     min="1"
-                    max="30"
+                    max="50"
+                    oninput="updatePreview()"
                   />
-                  <span>~</span>
+                  <span>명 ~</span>
                   <input
                     type="number"
                     id="max-size"
                     value="6"
                     min="1"
-                    max="30"
+                    max="50"
+                    oninput="updatePreview()"
                   />
                   <span>명</span>
                 </div>
+              </div>
+
+              <!-- 팀 수 예측 -->
+              <div class="team-preview" id="team-preview">
+                팀 수: — (참석자를 추가하세요)
               </div>
 
               <!-- 그룹별 현황 -->
@@ -999,12 +908,12 @@
 
           <!-- 결과 카드 -->
           <div class="card">
-            <div class="card-header no-toggle">
+            <div class="card-header static">
               <div class="card-title">
                 🏆 팀 결과
                 <span
                   class="badge"
-                  id="team-count-badge"
+                  id="result-badge"
                   style="display: none"
                 ></span>
               </div>
@@ -1032,7 +941,6 @@
         </div>
       </div>
     </div>
-    <!-- /app -->
 
     <div class="toast" id="toast"></div>
     <div class="loading-overlay" id="loading">
@@ -1042,11 +950,11 @@
       </div>
     </div>
 
-    <!-- ══ 상세 설정 모달 ══ -->
+    <!-- 설정 안내 모달 -->
     <div class="modal-overlay" id="setup-modal">
       <div class="modal">
         <div class="modal-header">
-          <h2>⚙️ Google Sheets 상세 설정</h2>
+          <h2>⚙️ Google Sheets 설정 안내</h2>
           <button class="modal-close" onclick="closeModal('setup-modal')">
             ✕
           </button>
@@ -1062,7 +970,6 @@
               </div>
             </div>
           </div>
-
           <div class="setup-step">
             <div class="step-num">2</div>
             <div class="step-body">
@@ -1081,7 +988,6 @@
               </button>
             </div>
           </div>
-
           <div class="setup-step">
             <div class="step-num">3</div>
             <div class="step-body">
@@ -1094,7 +1000,6 @@
               </div>
             </div>
           </div>
-
           <div class="setup-step">
             <div class="step-num">4</div>
             <div class="step-body">
@@ -1104,7 +1009,7 @@
                 <div class="input-row">
                   <input
                     type="text"
-                    id="modal-url-input"
+                    id="modal-url"
                     placeholder="https://script.google.com/macros/s/…/exec"
                   />
                   <button
@@ -1132,26 +1037,20 @@
 ══════════════════════════════ */
       const APPS_SCRIPT = `// 팀 자동 배정 — Apps Script
 const SHEET_NAME = "명단";
-
 function doGet(e)  { return handle(e); }
 function doPost(e) { return handle(e); }
-
 function handle(e) {
-  const cors = ContentService.createTextOutput;
   const action = (e.parameter && e.parameter.action) || "read";
   let result;
   try {
     if (action === "read")  result = readMembers();
     if (action === "write") result = writeMembers(e);
     if (action === "ping")  result = { ok: true };
-  } catch(err) {
-    result = { ok: false, error: err.message };
-  }
+  } catch(err) { result = { ok: false, error: err.message }; }
   return ContentService
     .createTextOutput(JSON.stringify(result))
     .setMimeType(ContentService.MimeType.JSON);
 }
-
 function getSheet() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   let sheet = ss.getSheetByName(SHEET_NAME);
@@ -1159,41 +1058,24 @@ function getSheet() {
     sheet = ss.insertSheet(SHEET_NAME);
     sheet.getRange(1,1,1,3).setValues([["이름","그룹","참석"]])
          .setFontWeight("bold").setBackground("#d8f3dc");
-    sheet.setColumnWidth(1,120);
-    sheet.setColumnWidth(2,80);
-    sheet.setColumnWidth(3,60);
+    sheet.setColumnWidth(1,120); sheet.setColumnWidth(2,80); sheet.setColumnWidth(3,60);
   }
   return sheet;
 }
-
 function readMembers() {
-  const sheet = getSheet();
-  const last  = sheet.getLastRow();
+  const sheet = getSheet(), last = sheet.getLastRow();
   if (last <= 1) return { ok: true, members: [] };
   const rows = sheet.getRange(2,1,last-1,3).getValues();
-  const members = rows
-    .filter(r => String(r[0]).trim() !== "")
-    .map(function(r, i) {
-      return {
-        id:      i + 1,
-        name:    String(r[0]).trim(),
-        group:   String(r[1]).trim() || "알돌",
-        present: String(r[2]).trim() !== "불참"
-      };
-    });
+  const members = rows.filter(r => String(r[0]).trim() !== "")
+    .map(function(r,i){ return { id:i+1, name:String(r[0]).trim(), group:String(r[1]).trim()||"알돌", present:String(r[2]).trim()!=="불참" }; });
   return { ok: true, members: members };
 }
-
 function writeMembers(e) {
-  const body    = JSON.parse(e.postData.contents);
-  const members = body.members || [];
-  const sheet   = getSheet();
-  const last    = sheet.getLastRow();
+  const body = JSON.parse(e.postData.contents), members = body.members || [];
+  const sheet = getSheet(), last = sheet.getLastRow();
   if (last > 1) sheet.getRange(2,1,last-1,3).clearContent();
   if (members.length > 0) {
-    const rows = members.map(function(m) {
-      return [m.name, m.group, m.present ? "참석" : "불참"];
-    });
+    const rows = members.map(function(m){ return [m.name, m.group, m.present ? "참석" : "불참"]; });
     sheet.getRange(2,1,rows.length,3).setValues(rows);
   }
   return { ok: true, count: members.length };
@@ -1240,34 +1122,27 @@ function writeMembers(e) {
 ══════════════════════════════ */
       (function init() {
         document.getElementById('script-display').textContent = APPS_SCRIPT;
-
-        // URL: localStorage 저장값 → 없으면 기본 URL 자동 적용
         scriptUrl = localStorage.getItem(LS_URL) || SCRIPT_URL_DEFAULT;
         localStorage.setItem(LS_URL, scriptUrl);
-
-        // 입력창 채우기
-        document.getElementById('mini-url-input').value = scriptUrl;
-        document.getElementById('modal-url-input').value = scriptUrl;
-
-        // 로컬 명단 복원
+        document.getElementById('mini-url').value = scriptUrl;
+        document.getElementById('modal-url').value = scriptUrl;
         try {
           members = JSON.parse(localStorage.getItem(LS_DATA) || '[]');
         } catch {}
-
-        setStatus('ok', '연결됨', scriptUrl.slice(0, 40) + '…');
-
+        setStatus('ok', '연결됨', scriptUrl.slice(0, 42) + '…');
         renderList();
         updateStats();
         renderGroupSummary();
+        updatePreview();
       })();
 
       /* ══════════════════════════════
    D. 상태 표시
 ══════════════════════════════ */
       function setStatus(state, label, sub) {
-        const dot = document.getElementById('status-dot');
-        const lbl = document.getElementById('status-label');
-        const sub_el = document.getElementById('status-sub');
+        const dot = document.getElementById('status-dot'),
+          lbl = document.getElementById('status-label'),
+          subl = document.getElementById('status-sub');
         dot.className =
           'status-dot' +
           (state === 'ok'
@@ -1284,10 +1159,10 @@ function writeMembers(e) {
             : state === 'err'
               ? 'var(--danger)'
               : 'var(--muted)';
-        sub_el.textContent = sub || '';
+        subl.textContent = sub || '';
       }
-      function showLoading(msg) {
-        document.getElementById('loading-msg').textContent = msg;
+      function showLoading(m) {
+        document.getElementById('loading-msg').textContent = m;
         document.getElementById('loading').classList.add('show');
       }
       function hideLoading() {
@@ -1295,28 +1170,28 @@ function writeMembers(e) {
       }
 
       /* ══════════════════════════════
-   E. URL 저장
+   E. URL
 ══════════════════════════════ */
       function saveUrl(url) {
         if (!url || !url.includes('script.google.com'))
           return showToast('❗ 올바른 Apps Script URL이 아닙니다');
         scriptUrl = url;
         localStorage.setItem(LS_URL, url);
-        document.getElementById('mini-url-input').value = url;
-        document.getElementById('modal-url-input').value = url;
-        setStatus('ok', '연결됨', url.slice(0, 40) + '…');
+        document.getElementById('mini-url').value = url;
+        document.getElementById('modal-url').value = url;
+        setStatus('ok', '연결됨', url.slice(0, 42) + '…');
         showToast('✅ URL 저장됨');
       }
       function saveMiniUrl() {
-        saveUrl(document.getElementById('mini-url-input').value.trim());
+        saveUrl(document.getElementById('mini-url').value.trim());
       }
       function saveModalUrl() {
-        const url = document.getElementById('modal-url-input').value.trim();
+        const url = document.getElementById('modal-url').value.trim();
         saveUrl(url);
         if (url.includes('script.google.com')) {
-          document.getElementById('modal-url-status').textContent = '✅ 저장됨';
-          document.getElementById('modal-url-status').style.color =
-            'var(--accent)';
+          const el = document.getElementById('modal-url-status');
+          el.textContent = '✅ 저장됨';
+          el.style.color = 'var(--accent)';
           setTimeout(() => closeModal('setup-modal'), 700);
         }
       }
@@ -1336,16 +1211,16 @@ function writeMembers(e) {
           renderList();
           updateStats();
           renderGroupSummary();
+          updatePreview();
           setStatus('ok', '연결됨', `불러오기 완료 · ${fmtT()}`);
           showToast(`✅ ${members.length}명 불러오기 완료`);
         } catch (e) {
-          setStatus('err', '불러오기 실패', e.message);
+          setStatus('err', '실패', e.message);
           showToast('❗ ' + e.message);
         } finally {
           hideLoading();
         }
       }
-
       async function pushToSheets() {
         if (!confirm(`현재 명단 ${members.length}명을 시트에 저장할까요?`))
           return;
@@ -1361,13 +1236,12 @@ function writeMembers(e) {
           setStatus('ok', '연결됨', `저장 완료 · ${fmtT()}`);
           showToast(`✅ 시트에 ${data.count}명 저장 완료`);
         } catch (e) {
-          setStatus('err', '저장 실패', e.message);
+          setStatus('err', '실패', e.message);
           showToast('❗ ' + e.message);
         } finally {
           hideLoading();
         }
       }
-
       function saveLocal() {
         localStorage.setItem(LS_DATA, JSON.stringify(members));
       }
@@ -1376,8 +1250,8 @@ function writeMembers(e) {
    G. 멤버 CRUD
 ══════════════════════════════ */
       function addMember() {
-        const nameEl = document.getElementById('inp-name');
-        const name = nameEl.value.trim();
+        const nameEl = document.getElementById('inp-name'),
+          name = nameEl.value.trim();
         const group = document.getElementById('inp-group').value;
         if (!name) return showToast('❗ 이름을 입력하세요');
         if (members.some((m) => m.name === name))
@@ -1387,11 +1261,11 @@ function writeMembers(e) {
         renderList();
         updateStats();
         renderGroupSummary();
+        updatePreview();
         nameEl.value = '';
         nameEl.focus();
         showToast(`✅ ${name} (${group}) 추가`);
       }
-
       function deleteMember(id) {
         const m = members.find((x) => x.id == id);
         members = members.filter((x) => x.id != id);
@@ -1399,9 +1273,9 @@ function writeMembers(e) {
         renderList();
         updateStats();
         renderGroupSummary();
+        updatePreview();
         if (m) showToast(`🗑️ ${m.name} 삭제`);
       }
-
       function togglePresent(id) {
         const m = members.find((x) => x.id == id);
         if (m) {
@@ -1410,68 +1284,107 @@ function writeMembers(e) {
           renderList();
           updateStats();
           renderGroupSummary();
+          updatePreview();
         }
       }
-
       function clearAll() {
-        if (
-          !confirm(
-            '화면 명단을 전부 지울까요?\n(시트 데이터는 삭제되지 않습니다)',
-          )
-        )
-          return;
+        if (!confirm('화면 명단을 전부 지울까요?')) return;
         members = [];
         saveLocal();
         renderList();
         updateStats();
         renderGroupSummary();
+        updatePreview();
         showToast('🗑️ 초기화됨');
       }
 
       /* ══════════════════════════════
    H. 수정 모드
-   버튼 하나로 전체 명단 편집 모드 전환
 ══════════════════════════════ */
-      function toggleEditMode() {
+      function toggleEdit() {
         editMode = !editMode;
-        const btn = document.getElementById('edit-toggle-btn');
+        const btn = document.getElementById('edit-btn');
         btn.textContent = editMode ? '💾 저장' : '✏️ 수정';
         btn.className = editMode ? 'btn-primary' : 'btn-edit';
         if (!editMode) {
-          // 수정 모드 종료 시 입력값 일괄 반영
           document.querySelectorAll('.member-row.edit-mode').forEach((row) => {
-            const id = parseInt(row.dataset.id);
-            const m = members.find((x) => x.id === id);
+            const id = parseInt(row.dataset.id),
+              m = members.find((x) => x.id === id);
             if (!m) return;
-            const nameVal = row.querySelector('.edit-name').value.trim();
-            const grpVal = row.querySelector('.edit-group').value;
-            if (nameVal) {
-              m.name = nameVal;
-              m.group = grpVal;
+            const nv = row.querySelector('.edit-name').value.trim();
+            const gv = row.querySelector('.edit-group').value;
+            if (nv) {
+              m.name = nv;
+              m.group = gv;
             }
           });
           saveLocal();
-          showToast('✅ 수정 내용 저장됨');
+          showToast('✅ 수정 저장됨 — 📤 저장으로 시트에도 반영하세요');
         }
         renderList();
       }
 
       /* ══════════════════════════════
-   I. 명단 접기/펼치기
+   I. 접기/펼치기
 ══════════════════════════════ */
-      function toggleMemberList() {
+      function toggleList() {
         listOpen = !listOpen;
-        const body = document.getElementById('member-body');
-        const icon = document.getElementById('collapse-icon');
-        const card = document.getElementById('member-card');
-        body.style.display = listOpen ? '' : 'none';
-        icon.textContent = listOpen ? '▼' : '▶';
-        card.classList.toggle('collapsed', !listOpen);
+        document.getElementById('member-body').style.display = listOpen
+          ? ''
+          : 'none';
+        document.getElementById('collapse-icon').textContent = listOpen
+          ? '▼'
+          : '▶';
       }
 
       /* ══════════════════════════════
-   J. 렌더링 — 그룹별 + 가나다순
+   J. 팀 수 예측 & 렌더링
 ══════════════════════════════ */
+
+      /**
+       * 참석자 수와 min/max 인원으로 최적 팀 수 계산
+       * 우선순위: 인원 범위 준수 > 팀 수
+       *
+       * 알고리즘:
+       * 가능한 팀 수 범위 = [ceil(n/max), floor(n/min)]
+       * 이 범위 내에서 각 팀 인원이 max에 가장 가까운 팀 수 선택
+       * (너무 빽빽하지 않고 균등하게)
+       */
+      function calcTeamCount(n, minS, maxS) {
+        if (n < 2) return 0;
+        const lo = Math.ceil(n / maxS); // 팀 수 최솟값 (팀당 최대 인원 기준)
+        const hi = Math.floor(n / minS); // 팀 수 최댓값 (팀당 최소 인원 기준)
+        if (lo > hi) {
+          // 범위 내에 딱 맞는 팀 수가 없음 → 가장 가까운 값 사용
+          return lo; // 최소 팀 수 (팀이 좀 커짐)
+        }
+        // 범위 내에서 팀당 인원이 max에 가장 가까운 팀 수 (최대한 팀 수를 적게)
+        return lo;
+      }
+
+      function updatePreview() {
+        const att = members.filter((m) => m.present).length;
+        const minS = parseInt(document.getElementById('min-size').value) || 4;
+        const maxS = parseInt(document.getElementById('max-size').value) || 6;
+        const el = document.getElementById('team-preview');
+        if (att < 2) {
+          el.textContent = '팀 수: — (참석자를 추가하세요)';
+          return;
+        }
+        if (minS > maxS) {
+          el.textContent = '⚠️ 최솟값이 최댓값보다 큽니다';
+          return;
+        }
+        const tCnt = calcTeamCount(att, minS, maxS);
+        const perTeam = Math.floor(att / tCnt);
+        const remain = att % tCnt;
+        const desc =
+          remain === 0
+            ? `각 팀 ${perTeam}명`
+            : `${remain}팀은 ${perTeam + 1}명, 나머지는 ${perTeam}명`;
+        el.textContent = `→ ${tCnt}팀 자동 구성 (${desc})`;
+      }
+
       function setFilter(mode) {
         filterMode = mode;
         ['all', 'present', 'absent'].forEach((m) =>
@@ -1482,18 +1395,12 @@ function writeMembers(e) {
         renderList();
       }
 
-      function gBadge(group) {
-        const c = GROUP_COLORS[group] || { bg: '#eee', text: '#555' };
-        return `<span class="group-badge" style="background:${c.bg};color:${c.text}">${esc(group)}</span>`;
-      }
-
       function renderList() {
         const body = document.getElementById('member-list-body');
         const q = document
           .getElementById('search-inp')
           .value.trim()
           .toLowerCase();
-
         const filtered = members.filter((m) => {
           const ms = !q || m.name.toLowerCase().includes(q);
           const mf =
@@ -1502,85 +1409,57 @@ function writeMembers(e) {
             (filterMode === 'absent' && !m.present);
           return ms && mf;
         });
-
         document.getElementById('total-badge').textContent =
           filtered.length + '/' + members.length + '명';
-
         if (!filtered.length) {
-          body.innerHTML = `<div class="empty-state">${
-            members.length === 0
-              ? '위 폼에서 참가자를 추가하거나<br>🔄 불러오기 버튼으로 시트에서 가져오세요'
-              : '검색 결과 없음'
-          }</div>`;
+          body.innerHTML = `<div class="empty-state">${members.length === 0 ? '위 폼에서 참가자를 추가하거나<br>🔄 불러오기 버튼으로 시트에서 가져오세요' : '검색 결과 없음'}</div>`;
           return;
         }
-
-        // 그룹별로 묶고 각 그룹 내 가나다 정렬
         let html = '';
         GROUPS.forEach((g) => {
-          const group = filtered
+          const grp = filtered
             .filter((m) => m.group === g)
             .sort((a, b) => a.name.localeCompare(b.name, 'ko'));
-          if (!group.length) return;
+          if (!grp.length) return;
           const c = GROUP_COLORS[g] || { bg: '#eee', text: '#555' };
-          html += `<div class="group-section">
-      <div class="group-section-header">
-        <span class="group-label" style="background:${c.bg};color:${c.text}">${esc(g)}</span>
-        <span class="group-count">${group.length}명</span>
-      </div>`;
-
-          group.forEach((m) => {
+          html += `<div class="group-section"><div class="group-section-header">
+      <span class="group-label-pill" style="background:${c.bg};color:${c.text}">${esc(g)}</span>
+      <span class="group-count">${grp.length}명</span>
+    </div>`;
+          grp.forEach((m) => {
             if (editMode) {
-              // 편집 모드 행
               html += `<div class="member-row edit-mode" data-id="${m.id}">
           <input class="edit-name" type="text" value="${esc(m.name)}"/>
-          <select class="edit-group">${GROUPS.map(
-            (gg) =>
-              `<option value="${gg}"${gg === m.group ? ' selected' : ''}>${gg}</option>`,
-          ).join('')}</select>
-          <button class="toggle-btn ${m.present ? 'present' : 'absent'}" onclick="togglePresent(${m.id})">
-            ${m.present ? '참석' : '불참'}
-          </button>
-          <div class="edit-btns">
-            <button class="btn-danger" style="padding:3px 7px;font-size:.72rem" onclick="deleteMember(${m.id})">삭제</button>
-          </div>
+          <select class="edit-group">${GROUPS.map((gg) => `<option value="${gg}"${gg === m.group ? ' selected' : ''}>${gg}</option>`).join('')}</select>
+          <button class="toggle-btn ${m.present ? 'present' : 'absent'}" onclick="togglePresent(${m.id})">${m.present ? '참석' : '불참'}</button>
+          <button class="btn-danger" style="padding:3px 7px;font-size:.72rem" onclick="deleteMember(${m.id})">삭제</button>
         </div>`;
             } else {
-              // 일반 모드 행
               html += `<div class="member-row ${m.present ? '' : 'absent'}" data-id="${m.id}">
-          <span class="member-name">${esc(m.name)}</span>
-          ${gBadge(m.group)}
-          <button class="toggle-btn ${m.present ? 'present' : 'absent'}" onclick="togglePresent(${m.id})">
-            ${m.present ? '참석 ✓' : '불참 ✗'}
-          </button>
+          <span style="font-weight:500">${esc(m.name)}</span>
+          <button class="toggle-btn ${m.present ? 'present' : 'absent'}" onclick="togglePresent(${m.id})">${m.present ? '참석 ✓' : '불참 ✗'}</button>
         </div>`;
             }
           });
           html += '</div>';
         });
-
-        // 미지정 그룹 처리
+        // 미지정 그룹
         const etc = filtered
           .filter((m) => !GROUPS.includes(m.group))
           .sort((a, b) => a.name.localeCompare(b.name, 'ko'));
         if (etc.length) {
-          html += `<div class="group-section">
-      <div class="group-section-header">
-        <span class="group-label" style="background:#eee;color:#555">미지정</span>
-        <span class="group-count">${etc.length}명</span>
-      </div>`;
+          html += `<div class="group-section"><div class="group-section-header">
+      <span class="group-label-pill" style="background:#eee;color:#555">미지정</span>
+      <span class="group-count">${etc.length}명</span>
+    </div>`;
           etc.forEach((m) => {
             html += `<div class="member-row ${m.present ? '' : 'absent'}" data-id="${m.id}">
-        <span class="member-name">${esc(m.name)}</span>
-        <span class="group-badge" style="background:#eee;color:#555">미지정</span>
-        <button class="toggle-btn ${m.present ? 'present' : 'absent'}" onclick="togglePresent(${m.id})">
-          ${m.present ? '참석 ✓' : '불참 ✗'}
-        </button>
+        <span style="font-weight:500">${esc(m.name)}</span>
+        <button class="toggle-btn ${m.present ? 'present' : 'absent'}" onclick="togglePresent(${m.id})">${m.present ? '참석 ✓' : '불참 ✗'}</button>
       </div>`;
           });
           html += '</div>';
         }
-
         body.innerHTML = html;
       }
 
@@ -1612,17 +1491,24 @@ function writeMembers(e) {
       }
 
       /* ══════════════════════════════
-   K. 팀 생성
-   - 팀 수 직접 입력
-   - 팀당 인원 min~max 반영
-   - 그룹 비율 균등 (라운드로빈)
+   K. 팀 생성 알고리즘
+   ──────────────────────────────
+   핵심: 인원 범위(min~max)가 최우선
+   ──────────────────────────────
+   1. calcTeamCount로 범위를 만족하는 팀 수 결정
+   2. 그룹별 버킷으로 분류 & 내부 셔플
+   3. 라운드로빈으로 각 팀에 균등 배분
+      → 그룹 비율 유지
+   4. 남은 인원 분배:
+      floor(n/t)명씩 배정 후 나머지는
+      팀 인덱스 순으로 1명씩 추가
+      → 결과: 모든 팀이 floor(n/t) 또는 ceil(n/t)명
+      → max를 넘지 않도록 보장
+   5. 팀 내부 셔플
 ══════════════════════════════ */
       function generateTeams() {
-        const tCnt = parseInt(document.getElementById('team-count').value) || 5;
         const minS = parseInt(document.getElementById('min-size').value) || 4;
         const maxS = parseInt(document.getElementById('max-size').value) || 6;
-
-        if (tCnt < 1) return showToast('❗ 팀 수는 1 이상이어야 합니다');
         if (minS > maxS)
           return showToast('❗ 최솟값이 최댓값보다 클 수 없습니다');
 
@@ -1630,17 +1516,11 @@ function writeMembers(e) {
         if (att.length < 2)
           return showToast('❗ 참석자가 2명 이상이어야 합니다');
 
-        // 팀당 인원 범위 검증
-        if (att.length < tCnt * minS) {
-          if (
-            !confirm(
-              `참석자(${att.length}명)가 ${tCnt}팀 × 최소 ${minS}명보다 적습니다. 계속할까요?`,
-            )
-          )
-            return;
-        }
+        // 1. 인원 범위 기준으로 팀 수 결정
+        const tCnt = calcTeamCount(att.length, minS, maxS);
+        if (tCnt < 1) return showToast('❗ 팀을 구성할 수 없습니다');
 
-        // 그룹별 버킷 → 각 버킷 내 셔플
+        // 2. 그룹별 버킷 분류 & 셔플
         const buckets = {};
         GROUPS.forEach((g) => {
           buckets[g] = [];
@@ -1653,46 +1533,43 @@ function writeMembers(e) {
         Object.values(buckets).forEach((a) => shuffle(a));
         const groups = Object.values(buckets).filter((a) => a.length > 0);
 
-        // 팀 초기화
+        // 3. 팀 초기화
         const teams = Array.from({ length: tCnt }, (_, i) => ({
           id: i + 1,
           color: TEAM_COLORS[i % TEAM_COLORS.length],
           members: [],
         }));
 
-        // 라운드로빈 — 그룹 비율 균등 유지
-        groups.forEach((g) =>
-          g.forEach((m, i) => teams[i % tCnt].members.push(m)),
-        );
+        // 4. 라운드로빈으로 그룹 비율 유지하며 배분
+        //    → 각 그룹 멤버를 팀 0,1,2...순으로 배정
+        groups.forEach((grp) => {
+          grp.forEach((m, i) => teams[i % tCnt].members.push(m));
+        });
 
-        // 팀 내부 셔플
+        // 5. 팀 내부 셔플
         teams.forEach((t) => shuffle(t.members));
 
-        // min~max 범위 벗어난 팀 경고
-        const over = teams.filter((t) => t.members.length > maxS).length;
-        const under = teams.filter((t) => t.members.length < minS).length;
-        if (over || under) {
-          showToast(`⚠️ 일부 팀 인원이 범위(${minS}~${maxS}명)를 벗어났습니다`);
-        }
+        // 팀당 인원 분포 확인
+        const sizes = teams.map((t) => t.members.length);
+        const realMin = Math.min(...sizes),
+          realMax = Math.max(...sizes);
 
         lastResult = teams;
 
-        // 결과 렌더링
+        // 6. 결과 렌더링
         document.getElementById('result-placeholder').style.display = 'none';
         document.getElementById('teams-grid').style.display = 'grid';
-        document.getElementById('team-count-badge').style.display =
-          'inline-block';
+        document.getElementById('result-badge').style.display = 'inline-block';
         document.getElementById('copy-btn').style.display = 'inline-block';
-        document.getElementById('team-count-badge').textContent = tCnt + '팀';
+        document.getElementById('result-badge').textContent = `${tCnt}팀`;
 
         document.getElementById('teams-grid').innerHTML = teams
-          .map((t) => {
-            const inRange =
-              t.members.length >= minS && t.members.length <= maxS;
-            return `<div class="team-card">
+          .map(
+            (t) => `
+    <div class="team-card">
       <div class="team-card-header" style="background:${t.color}">
         <h3>🏅 팀 ${t.id}</h3>
-        <span class="cnt" style="${!inRange ? 'background:rgba(231,76,60,.4)' : ''}">${t.members.length}명</span>
+        <span class="cnt">${t.members.length}명</span>
       </div>
       <div class="team-card-body">
         ${t.members
@@ -1706,18 +1583,18 @@ function writeMembers(e) {
           })
           .join('')}
       </div>
-    </div>`;
-          })
+    </div>`,
+          )
           .join('');
 
-        showToast(`🎉 ${tCnt}팀 생성 완료! (참석 ${att.length}명)`);
+        showToast(`🎉 ${tCnt}팀 생성 완료! 팀당 ${realMin}~${realMax}명`);
       }
 
       /* ══════════════════════════════
    L. 모달 & 유틸
 ══════════════════════════════ */
-      function openSetupModal() {
-        document.getElementById('modal-url-input').value = scriptUrl;
+      function openSetup() {
+        document.getElementById('modal-url').value = scriptUrl;
         document.getElementById('modal-url-status').textContent = '';
         openModal('setup-modal');
       }
@@ -1736,9 +1613,8 @@ function writeMembers(e) {
         navigator.clipboard
           .writeText(APPS_SCRIPT)
           .then(() => showToast('📋 코드 복사됨'))
-          .catch(() => showToast('❗ 복사 실패 — 직접 드래그해서 복사하세요'));
+          .catch(() => showToast('❗ 직접 드래그해서 복사하세요'));
       }
-
       function shuffle(a) {
         for (let i = a.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
@@ -1756,7 +1632,7 @@ function writeMembers(e) {
         const t = document.getElementById('toast');
         t.textContent = msg;
         t.classList.add('show');
-        setTimeout(() => t.classList.remove('show'), 2800);
+        setTimeout(() => t.classList.remove('show'), 3000);
       }
       function copyResult() {
         if (!lastResult) return;
@@ -1791,7 +1667,9 @@ function writeMembers(e) {
       }
       function fmtT() {
         const d = new Date();
-        return `${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+        return (
+          p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds())
+        );
       }
       function p(n) {
         return String(n).padStart(2, '0');
