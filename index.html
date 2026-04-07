@@ -1574,11 +1574,10 @@ function writeMembers(e) {
       <div class="team-card-body">
         ${t.members
           .map((m) => {
-            const c = GROUP_COLORS[m.group] || { bg: '#eee', text: '#555' };
             return `<div class="team-member-item">
             <div class="member-dot" style="background:${t.color}"></div>
             <span style="flex:1;font-weight:500">${esc(m.name)}</span>
-            <span style="background:${c.bg};color:${c.text};font-size:.62rem;font-weight:700;padding:1px 6px;border-radius:4px">${esc(m.group)}</span>
+
           </div>`;
           })
           .join('')}
